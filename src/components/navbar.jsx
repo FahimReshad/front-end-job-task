@@ -35,10 +35,22 @@ const Navbar = () => {
     },
     {
       title: "About",
-      pathName: "/about",
+      pathName: "/",
     },
     {
       title: "Portfolio",
+      pathName: "/",
+    },
+    {
+      title: "Clients",
+      pathName: "/",
+    },
+    {
+      title: "Blog",
+      pathName: "/",
+    },
+    {
+      title: "Contact",
       pathName: "/",
     },
   ];
