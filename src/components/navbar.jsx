@@ -55,12 +55,12 @@ const Navbar = () => {
     },
   ];
   return (
-    <header className="border-b py-4 px-4 sm:px-10 bg-gradient-red tracking-wide relative z-50">
+    <header className=" py-4 px-4 sm:px-10 bg-gradient-red tracking-wide relative z-50">
       <div className="max-w-7xl w-full mx-auto flex flex-wrap items-center gap-4">
         {/* logo & name */}
-        <Link to="/" className="flex justify-center items-center gap-2">
+        <Link to="/" className="flex items-center gap-2">
           <img src={logo} alt="logo" className="w-8 h-8" />
-          <span className="text-3xl text-white">Restaurant</span>
+          <span className="text-4xl text-white">Restaurant</span>
         </Link>
         {/* toggle menubar for md and mobile devices */}
         <div
