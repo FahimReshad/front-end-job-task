@@ -45,38 +45,58 @@ const foodItems = [
 ];
 
 export default function FoodCarousel() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const nextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % foodItems.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentIndex(
-      (prevIndex) => (prevIndex - 1 + foodItems.length) % foodItems.length
-    );
-  };
-
-  useEffect(() => {
-    const interval = setInterval(nextSlide, 4000);
-    return () => clearInterval(interval);
-  }, []);
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [translateValue, setTranslateValue] = useState(0);
+  
+    const updateTranslateValue = () => {
+      const screenWidth = window.innerWidth;
+  
+      if (screenWidth < 576) {
+        setTranslateValue(currentIndex * 100); // Mobile view (100% per slide)
+      } else if (screenWidth < 768) {
+        setTranslateValue(currentIndex * 50); // Tablet view (50% per slide)
+      } else if (screenWidth < 1024) {
+        setTranslateValue(currentIndex * 33.33); // Small desktop view (33.33% per slide)
+      } else {
+        setTranslateValue(currentIndex * 25); // Large desktop view (25% per slide)
+      }
+    };
+  
+    useEffect(() => {
+      updateTranslateValue();
+      window.addEventListener('resize', updateTranslateValue);
+  
+      return () => window.removeEventListener('resize', updateTranslateValue);
+    }, [currentIndex]); // Add currentIndex as a dependency
+  
+    const nextSlide = () => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % foodItems.length);
+    };
+  
+    const prevSlide = () => {
+      setCurrentIndex(
+        (prevIndex) => (prevIndex - 1 + foodItems.length) % foodItems.length
+      );
+    };
+  
+    useEffect(() => {
+      const interval = setInterval(nextSlide, 4000);
+      return () => clearInterval(interval);
+    }, []);
+  
 
   return (
     <section className="bg-[#FBF7F2]">
-        <div className="w-full max-w-7xl mx-auto px-4 py-20 relative">
+        <div className="w-full max-w-7xl mx-auto px-4 py-10 md:py-20 relative">
       <div className="text-start mb-8">
         <p className="text-[#B52B1D] font-semibold text-xl mb-2">Crispy, Every Bite Taste</p>
-        <h2 className="md:text-6xl font-semibold text-[#181818]">POPULAR FOOD ITEMS</h2>
+        <h2 className="text-3xl md:text-4xl lg:text-6xl font-bold text-[#181818]">POPULAR FOOD ITEMS</h2>
       </div>
 
-      <div className="overflow-hidden my-20" style={{ width: "calc(100% + 2rem)" }}>
+      <div className="overflow-hidden mb-20 md:mb-0 md:my-20 w-full">
         <div
           className="flex transition-transform duration-300 ease-in-out"
-          style={{
-            width: `${foodItems.length * 12.5}%`,
-            transform: `translateX(-${currentIndex * 25}%)`,
-          }}
+          style={{ transform: `translateX(-${translateValue}%)` }}
         >
           {foodItems.map((item, index) => (
             <div
@@ -103,7 +123,7 @@ export default function FoodCarousel() {
             </div>
           ))}
         </div>
-        <div className="absolute top-20 right-20 flex gap-6 items-center">
+        <div className="absolute left-1/3 md:left-[40%] lg:left-[87%] bottom-4 md:-bottom-4 lg:bottom-0 lg:-top-80 flex gap-6 items-center">
           <button
             onClick={prevSlide}
             className=" transform -translate-y-1/2 bg-white rounded-full p-4 shadow-md"
