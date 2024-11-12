@@ -14,7 +14,7 @@ const AboutSection = () => {
       label: "About",
       title: "Exceptional culinary experience and delicious food",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ornare non sed est cursus. Vel hac convallis ipsum, facilisi odio pellentesque bibendum viverra tempus. Lorem ipsum dolor sit amet consectetur adipiscing elit do eiusmod tempor incididunt ut labore et dolore magna minim veniam nostrud exercitation.",
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ornare non sed est cursus. Vel hac convallis ipsum, facilisi odio pellentesque bibendum viverra tempus. Lorem ipsum dolor sit amet consectetur adipiscing elit do eiusmod tempor incididunt ut labore et dolore magna minim veniam nostrud exercitation. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ornare non sed est cursus. Vel hac convallis ipsum, facilisi odio pellentesque bibendum viverra tempus. Lorem ipsum dolor sit amet consectetur adipiscing elit do eiusmod tempor incididunt ut labore et dolore magna minim veniam nostrud exercitation.",
       contentId: "aboutContent",
       button: <Button text={"About More"} />,
     },
@@ -39,7 +39,7 @@ const AboutSection = () => {
   ];
 
   return (
-    <section className="flex flex-col lg:flex-row gap-8 max-w-7xl w-full mx-auto my-20 p-4 lg:p-0">
+    <section className="flex flex-col lg:flex-row gap-8 max-w-7xl w-full mx-auto my-4 md:my-6 lg:my-20 p-4 lg:p-0">
         {/* left side banner */}
       <div className="lg:w-1/2 relative">
         <img src={aboutImage} alt="About left Image" className="rounded " />
